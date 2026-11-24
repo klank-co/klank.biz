@@ -13,22 +13,31 @@
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     display: flex; align-items: center; justify-content: center;
   }
-  main { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 16px; }
-  .mark { display: flex; align-items: center; gap: 22px; }
-  .mark svg { width: 96px; height: 96px; flex: none; }
-  .name { font-size: 40px; line-height: 1.02; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-  .links { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  a { color: #8a867e; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
+  main { display: flex; flex-direction: column; align-items: flex-start; gap: 44px; padding: 16px; }
+  .mark { display: flex; align-items: flex-end; gap: 36px; }
+  .mark svg { width: min(200px, 35vw); height: min(196px, 34.3vw); flex: none; }
+  .name { font-size: min(68px, 12vw); line-height: 1.02; font-weight: 800; -webkit-text-stroke: 2px currentColor; letter-spacing: 0.08em; text-transform: uppercase; }
+  .links { align-self: center; display: flex; align-items: center; gap: 14px; color: #8a867e; font-size: 16px; }
+  .bolt { width: 24px; height: 34px; flex: none; position: relative; top: 3px; }
+  a { color: #8a867e; font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-decoration: underline dotted rgba(138, 134, 126, 0.45); text-underline-offset: 5px; }
   a:hover { color: #e9e6df; }
   .eye { animation: blink 6s infinite; transform-origin: center; transform-box: fill-box; }
   @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
-  @media (prefers-reduced-motion: reduce) { .eye { animation: none; } }
+  .bolt.shake { animation: shake 0.45s; }
+  @keyframes shake {
+    0%, 100% { transform: rotate(0) translateX(0); }
+    20% { transform: rotate(-14deg) translateX(-2px); }
+    40% { transform: rotate(12deg) translateX(2px); }
+    60% { transform: rotate(-8deg) translateX(-1px); }
+    80% { transform: rotate(5deg) translateX(1px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .eye, .bolt.shake { animation: none; } }
 </style>
 </head>
 <body>
 <main>
   <div class="mark">
-    <svg viewBox="0 0 64 64" role="img" aria-label="A robot">
+    <svg viewBox="5 1 54 53" role="img" aria-label="A robot">
       <line x1="32" y1="6" x2="32" y2="14" stroke="#c9c4b8" stroke-width="3" stroke-linecap="round"/>
       <circle cx="32" cy="5" r="3.5" fill="#d23c3c"/>
       <rect x="6" y="26" width="6" height="14" rx="2" fill="#8a857b"/>
@@ -43,8 +52,24 @@
   </div>
   <div class="links">
     <a href="https://mrklanky.app/">mrklanky.app</a>
+    <svg class="bolt" viewBox="0 0 20 28" aria-hidden="true"><polygon points="8,0 1,16 8,16 5,28 19,9 11,9 18,0" fill="#ffcc00"/></svg>
     <a href="mailto:perp@klank.biz">perp@klank.biz</a>
   </div>
 </main>
+<script>
+  // A click on a link shakes the bolt; a web link waits for the shake, then opens.
+  const bolt = document.querySelector('.bolt');
+  for (const link of document.querySelectorAll('.links a')) {
+    link.addEventListener('click', event => {
+      bolt.classList.remove('shake');
+      void bolt.getBoundingClientRect(); // restart the animation
+      bolt.classList.add('shake');
+      if (link.protocol.startsWith('http') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        event.preventDefault();
+        setTimeout(() => { location.href = link.href; }, 450);
+      }
+    });
+  }
+</script>
 </body>
 </html>
