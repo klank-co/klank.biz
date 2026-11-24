@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klank Corp</title>
+<link rel="icon" href="robot.svg" type="image/svg+xml">
+<style>
+  :root { color-scheme: dark; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #0b0b0e; color: #e9e6df;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    display: flex; align-items: center; justify-content: center;
+  }
+  main { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 16px; }
+  .mark { display: flex; align-items: center; gap: 22px; }
+  .mark svg { width: 96px; height: 96px; flex: none; }
+  .name { font-size: 40px; line-height: 1.02; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  a { color: #6f6c66; font-size: 12px; letter-spacing: 0.12em; text-decoration: none; }
+  a:hover { color: #e9e6df; }
+  .eye { animation: blink 6s infinite; transform-origin: center; transform-box: fill-box; }
+  @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
+  @media (prefers-reduced-motion: reduce) { .eye { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark">
+    <svg viewBox="0 0 64 64" role="img" aria-label="A robot">
+      <line x1="32" y1="6" x2="32" y2="14" stroke="#c9c4b8" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="32" cy="5" r="3.5" fill="#d23c3c"/>
+      <rect x="6" y="26" width="6" height="14" rx="2" fill="#8a857b"/>
+      <rect x="52" y="26" width="6" height="14" rx="2" fill="#8a857b"/>
+      <rect x="10" y="14" width="44" height="40" rx="9" fill="#d9d4c7"/>
+      <rect x="16" y="22" width="32" height="18" rx="5" fill="#1b1b20"/>
+      <rect class="eye" x="21" y="27" width="7" height="8" rx="2" fill="#7fe0ff"/>
+      <rect class="eye" x="36" y="27" width="7" height="8" rx="2" fill="#7fe0ff"/>
+      <rect x="22" y="45" width="20" height="4" rx="2" fill="#8a857b"/>
+    </svg>
+    <div class="name">Klank<br>Corp</div>
+  </div>
+  <a href="https://mrklanky.app/">mrklanky.app</a>
+</main>
+</body>
+</html>
