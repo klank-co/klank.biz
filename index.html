@@ -17,7 +17,8 @@
   .mark { display: flex; align-items: center; gap: 22px; }
   .mark svg { width: 96px; height: 96px; flex: none; }
   .name { font-size: 40px; line-height: 1.02; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-  a { color: #6f6c66; font-size: 12px; letter-spacing: 0.12em; text-decoration: none; }
+  .links { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  a { color: #8a867e; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
   a:hover { color: #e9e6df; }
   .eye { animation: blink 6s infinite; transform-origin: center; transform-box: fill-box; }
   @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
@@ -40,8 +41,10 @@
     </svg>
     <div class="name">Klank<br>Corp</div>
   </div>
-  <a href="https://mrklanky.app/">mrklanky.app</a>
-  <a href="mailto:perp@klank.biz">perp@klank.biz</a>
+  <div class="links">
+    <a href="https://mrklanky.app/">mrklanky.app</a>
+    <a href="mailto:perp@klank.biz">perp@klank.biz</a>
+  </div>
 </main>
 </body>
 </html>
